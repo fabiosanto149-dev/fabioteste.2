@@ -1,253 +1,218 @@
-DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruany - Gerente de Contas Vivo Empresas</title>
+    <title>Ruany | Account Manager Vivo Empresas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Cores com tendência feminina e profissional */
+            --primary: #ff00cc; /* Magenta Vivo */
+            --secondary: #6600ff; /* Violeta Profundo */
+            --accent: #ffb7c5; /* Rose Gold */
+            --dark: #0f0a14;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
         }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        header {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            text-align: center;
+            background-color: var(--dark);
             color: white;
-            backdrop-filter: blur(10px);
+            overflow-x: hidden;
         }
+
+        /* Fundo com efeito de névoa colorida */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 80% 20%, #2a1b3d 0%, #0f0a14 100%);
+            z-index: -1;
+        }
+
+        .glow-effect {
+            position: absolute;
+            width: 400px; height: 400px;
+            background: var(--primary);
+            filter: blur(180px);
+            border-radius: 50%;
+            opacity: 0.15;
+            top: -100px; left: -100px;
+            animation: pulse 8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            to { transform: scale(1.2); opacity: 0.2; }
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 8%;
+        }
+
         .container {
             max-width: 1200px;
-            margin: 40px auto;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        }
-        .profile {
+            width: 100%;
             display: flex;
-            padding: 40px;
+            align-items: center;
+            justify-content: space-between;
             gap: 40px;
         }
-        .profile-image {
-            flex-shrink: 0;
+
+        /* Foto com borda orgânica e suave */
+        .profile-wrapper {
+            position: relative;
         }
-        .profile-image img {
-            width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+
+        .profile-img {
+            width: 380px;
+            height: 480px;
+            object-fit: cover;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            border: 2px solid var(--border);
+            box-shadow: 0 0 50px rgba(255, 0, 204, 0.2);
+            animation: morph 10s ease-in-out infinite;
         }
-        .profile-info h1 {
-            color: #333;
-            font-size: 2.5em;
+
+        @keyframes morph {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+        }
+
+        .content h2 {
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
             margin-bottom: 10px;
         }
-        .profile-info .position {
-            color: #764ba2;
-            font-size: 1.3em;
-            font-weight: 600;
+
+        .content h1 {
+            font-size: 4rem;
+            line-height: 1;
             margin-bottom: 20px;
         }
-        .profile-info p {
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 20px;
+
+        .content h1 span {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .contact-info {
-            background: #f5f5f5;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
+
+        .description {
+            font-size: 1.1rem;
+            color: #ccc;
+            max-width: 500px;
+            margin-bottom: 35px;
         }
-        .contact-info p {
-            margin: 10px 0;
-        }
-        footer {
-            background: #333;
+
+        .cta-button {
+            padding: 18px 45px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 15px;
+            transition: 0.3s;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(255, 0, 204, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 0, 204, 0.5);
+        }
+
+        /* Seção de Excelência */
+        .excellence-section {
+            padding: 100px 8%;
             text-align: center;
-            padding: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            padding: 45px;
+            border-radius: 30px;
+            transition: 0.5s;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--primary);
+            transform: scale(1.03);
+        }
+
+        .glass-card h3 {
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        @media (max-width: 900px) {
+            .container { flex-direction: column-reverse; text-align: center; }
+            .profile-img { width: 300px; height: 350px; }
+            .content h1 { font-size: 2.8rem; }
         }
     </style>
 </head>
 <body>
+    <div class="glow-effect"></div>
+
     <header>
-        <h1>Bem-vindo ao Blog Profissional</h1>
+        <div class="container">
+            <div class="content">
+                <h2>Vivo Empresas</h2>
+                <h1>Olá, eu sou <span>Ruany</span></h1>
+                <p class="description">Gerente de Contas B2B focada em transformar a conectividade do seu negócio com <b>eficiência máxima</b> e <b>qualidade de serviço surreal</b>.</p>
+                <a href="tel:2730619962" class="cta-button">Solicitar Consultoria</a>
+            </div>
+            <div class="profile-wrapper">
+                <img src="ruany.jpg" alt="Ruany" class="profile-img">
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <div class="profile">
-            <div class="profile-image">
-                <img src="ruany.jpg" alt="Ruany">
+    <section class="excellence-section">
+        <h1>Opções de <span>Excelência</span></h1>
+        <div class="grid">
+            <div class="glass-card">
+                <h3>Atendimento Prime</h3>
+                <p>Gestão personalizada de contas corporativas, garantindo que cada solução seja moldada para o crescimento da sua empresa.</p>
             </div>
-            <div class="profile-info">
-                <h1>Ruany</h1>
-                <p class="position">Gerente de Contas - Vivo Empresas</p>
-                <p>
-                    Profissional dedicada e experiente em gestão de contas corporativas. 
-                    Especializada em soluções de telecomunicações para empresas, 
-                    oferecendo atendimento personalizado e estratégico para maximizar 
-                    o potencial dos seus negócios.
-                </p>
-                <div class="contact-info">
-                    <p><strong>Especialidade:</strong> Gestão de Contas Empresariais</p>
-                    <p><strong>Empresa:</strong> Vivo Empresas</p>
-                    <p><strong>Foco:</strong> Soluções em Telecomunicações</p>
-                </div>
+            <div class="glass-card">
+                <h3>Eficiência Operacional</h3>
+                <p>Otimização de custos e implementação ágil de serviços de dados, voz e nuvem com o padrão Vivo de qualidade.</p>
+            </div>
+            <div class="glass-card">
+                <h3>Suporte Dedicado</h3>
+                <p>Acompanhamento ponta a ponta para garantir que a tecnologia trabalhe a favor da sua produtividade, sem interrupções.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2024 Ruany - Gerente de Contas Vivo Empresas. Todos os direitos reservados.</p>
-    </footer>
+    <section class="excellence-section">
+        <h1> SOBRE <span>MIM</span></h1>
+        <p class="description" style="margin: 0 auto;">
+            Sou especialista em soluções corporativas na Vivo Empresas, onde atuo como ponte entre a tecnologia de ponta e o sucesso dos meus clientes. Minha missão é entregar excelência através de um olhar estratégico, garantindo que cada empresa parceira tenha a melhor performance do mercado.
+        </p>
+    </section>
+
 </body>
 </html>
-<style>
-    .creative-section {
-        padding: 40px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        margin-top: 40px;
-    }
-    
-    .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        margin: 30px 0;
-    }
-    
-    .skill-card {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 25px;
-        border-radius: 10px;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
-    }
-    
-    .skill-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
-    
-    .skill-card h3 {
-        font-size: 1.3em;
-        margin-bottom: 10px;
-    }
-    
-    .timeline {
-        position: relative;
-        padding: 20px 0;
-    }
-    
-    .timeline-item {
-        margin-bottom: 30px;
-        padding-left: 40px;
-        border-left: 3px solid rgba(255, 255, 255, 0.5);
-    }
-    
-    .timeline-item:before {
-        content: '';
-        position: absolute;
-        left: -9px;
-        top: 0;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background: white;
-    }
-</style>
-
-<div class="creative-section">
-    <h2>Competências Principais</h2>
-    <div class="skills-grid">
-        <div class="skill-card">
-            <h3>📊 Gestão Estratégica</h3>
-            <p>Desenvolvimento de estratégias customizadas para crescimento de negócios.</p>
-        </div>
-        <div class="skill-card">
-            <h3>🤝 Relacionamento</h3>
-            <p>Construção de parcerias duradouras com clientes corporativos.</p>
-        </div>
-        <div class="skill-card">
-            <h3>💡 Inovação</h3>
-            <p>Implementação de soluções tecnológicas em telecomunicações.</p>
-        </div>
-        <div class="skill-card">
-            <h3>📈 Resultados</h3>
-            <p>Aumento de rentabilidade e satisfação dos clientes empresariais.</p>
-        </div>
-    </div>
-    
-    <h2>Trajetória Profissional</h2>
-    <div class="timeline">
-        <div class="timeline-item">
-            <strong>Gerente de Contas - Vivo Empresas</strong>
-            <p>Gestão de portfólio de clientes corporativos com foco em soluções integradas.</p>
-        </div>
-        <div class="timeline-item">
-            <strong>Especialista em Telecomunicações</strong>
-            <p>Consultoria e implementação de infraestrutura de rede para grandes empresas.</p>
-        </div>
-    </div>
-</div>
-<div class="creative-section">
-    <h2>Informações Adicionais</h2>
-    <div class="info-card">
-        <p><strong>Idade:</strong> 32 anos</p>
-    </div>
-    
-    <h2>Competências Detalhadas</h2>
-    <div class="skills-grid">
-        <div class="skill-card" onclick="showSkillDetail('gestao')">
-            <h3>📊 Gestão Estratégica</h3>
-            <p>Clique para mais detalhes</p>
-            <div id="gestao" class="skill-detail" style="display:none;">
-                <p>Desenvolvimento de estratégias customizadas, análise de mercado, planejamento de crescimento e otimização de processos empresariais.</p>
-            </div>
-        </div>
-        <div class="skill-card" onclick="showSkillDetail('relacionamento')">
-            <h3>🤝 Relacionamento</h3>
-            <p>Clique para mais detalhes</p>
-            <div id="relacionamento" class="skill-detail" style="display:none;">
-                <p>Construção de parcerias duradouras, comunicação efetiva, negociação estratégica e fidelização de clientes corporativos.</p>
-            </div>
-        </div>
-        <div class="skill-card" onclick="showSkillDetail('inovacao')">
-            <h3>💡 Inovação</h3>
-            <p>Clique para mais detalhes</p>
-            <div id="inovacao" class="skill-detail" style="display:none;">
-                <p>Implementação de soluções tecnológicas avançadas, cloud computing, segurança de dados e infraestrutura de rede moderna.</p>
-            </div>
-        </div>
-        <div class="skill-card" onclick="showSkillDetail('resultados')">
-            <h3>📈 Resultados</h3>
-            <p>Clique para mais detalhes</p>
-            <div id="resultados" class="skill-detail" style="display:none;">
-                <p>Aumento de rentabilidade em 40%, melhoria na satisfação de clientes, redução de custos operacionais e expansão de portfólio.</p>
-            </div>
-        </div>
-    </div>
-<script>
-    function showSkillDetail(id) {
-        const element = document.getElementById(id);
-        element.style.display = element.style.display === 'none' ? 'block' : 'none';
-    }
-</script>
-
-<style>
-    body {
-        background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%) !important;
-    }
-    
-    .creative-section {
-        background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%) !important;
-    }
